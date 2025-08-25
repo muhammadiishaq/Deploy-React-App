@@ -1,0 +1,33 @@
+name: Deploy React to EC2
+
+on:
+  push:
+    branches:
+      - master   # 👈 Change if your branch is "main"
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install dependencies & build React app
+        run: |
+          npm install --legacy-peer-deps
+          npm run build
+
+      - name: Deploy build folder to EC2
+        uses: easingthemes/ssh-deploy@v2.1.5
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.EC2_SSH_KEY }}
+          SOURCE: "build/"
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: /var/www/html
