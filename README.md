@@ -1,4 +1,4 @@
-# 🚀 React CI/CD Deployment to AWS EC2
+# 🚀 React CI/CD Deployment using Github Action to AWS EC2
 
 This project is a simple **React application** deployed to an **AWS EC2 instance** using **GitHub Actions (CI/CD)**.  
 It is mainly for testing and learning purposes to understand how to automatically build and deploy React apps from GitHub to EC2.  
