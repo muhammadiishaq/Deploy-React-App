@@ -8,7 +8,8 @@ function App() {
         {/* React default logo */}
         <img src={logo} className="App-logo" alt="logo" />
 
-        <p>WELCOME TO Waqar bhai</p>
+        <p>WELCOME TO React App </p>
+        <p>Muhammad Ishaq </p>
 
         {/* GitHub profile link with GitHub logo */}
         <a
