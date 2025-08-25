@@ -45,8 +45,13 @@ jobs:
             # Go to deployment folder
             cd ${{ secrets.TARGET_DIR }}
 
-            # Install dependencies & build React app
-            npm install
+            # Clean previous installs
+            rm -rf node_modules package-lock.json
+
+            # Install dependencies (respect lockfile)
+            npm ci --legacy-peer-deps
+
+            # Build React app
             npm run build
 
             # Deploy build output to Apache web root
@@ -55,4 +60,3 @@ jobs:
 
             # Restart Apache
             sudo systemctl restart apache2
-
